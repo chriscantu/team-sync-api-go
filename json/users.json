@@ -1,0 +1,13 @@
+{
+    "users": [{
+        "firstName": "Chris",
+        "lastName": "Cantu",
+        "email": "chris@fake.com"
+    },{
+        "firstName": "Kevin",
+        "lastName": "Lamping",
+        "email": "Kevin@fake.com"
+    }
+    ],
+    "total": 2
+}
