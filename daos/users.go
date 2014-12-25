@@ -21,3 +21,11 @@ func GetUsers() (*mod.Users, error) {
 
     return &users, response
 }
+
+func GetUser(userId string) (mod.User, error) {
+    users, err := GetUsers()
+
+    user := users.Users[0]
+
+    return user, err
+}
