@@ -29,3 +29,15 @@ func GetUser(userId string) (mod.User, error) {
 
     return user, err
 }
+
+func CreateUser(user mod.User) (mod.User, error) {
+    return GetUser("1")
+}
+
+func UpdateUser(user mod.User) (mod.User, error) {
+    return GetUser("1")
+}
+
+func DeleteUser(userId int) () {
+    return
+}
