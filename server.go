@@ -3,10 +3,13 @@ package main
 import (
     "github.com/gin-gonic/gin"
     ctrl "./controllers"
+    daos "./daos"
 )
 
 func main() {
     r := gin.Default()
+
+    daos.InitDb()
 
     r.GET("/", ctrl.Hello)
     r.GET("/users", ctrl.GetUsers)

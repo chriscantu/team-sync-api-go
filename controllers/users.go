@@ -4,14 +4,13 @@ import (
     "github.com/gin-gonic/gin"
     dao "../daos"
     mod "../models"
-    "strconv"
 )
 
 func GetUsers (c *gin.Context) {
     users, err := dao.GetUsers()
 
     if err != nil {
-        c.JSON(500, mod.SystemError{"System Error"})
+        c.JSON(500, mod.Message{"System Error"})
     } else {
         c.JSON(200, users)
     }
@@ -22,7 +21,7 @@ func GetUser (c *gin.Context) {
     user, err := dao.GetUser(userId)
 
     if err != nil {
-        c.JSON(500, mod.SystemError{"Unable to retrieve User"})
+        c.JSON(500, mod.Message{"Unable to retrieve User"})
     } else {
         c.JSON(200, user)
     }
@@ -37,12 +36,14 @@ func CreateUser (c *gin.Context) {
     if err == nil {
         c.JSON(201, user)
     } else {
-        c.JSON(500, mod.SystemError{"Error creating User"})
+        c.JSON(500, mod.Message{"Error creating User"})
     }
 }
 
 func UpdateUser (c *gin.Context) {
     var json mod.User
+    json.Id = c.Params.ByName("userId")
+
     c.Bind(&json)
 
     user, err := dao.UpdateUser(json)
@@ -50,19 +51,18 @@ func UpdateUser (c *gin.Context) {
     if err == nil {
         c.JSON(200, user)
     } else {
-        c.JSON(500, mod.SystemError{"Error updating User"})
+        c.JSON(500, mod.Message{"Error updating User"})
     }
 }
 
 func DeleteUser (c *gin.Context) {
     userId := c.Params.ByName("userId")
-    id,err := strconv.Atoi(userId)
 
-    dao.DeleteUser(id)
+    err := dao.DeleteUser(userId)
 
     if err == nil {
-        c.JSON(200, mod.SystemError{"Deleted User"})
+        c.JSON(200, mod.Message{"Deleted User"})
     } else {
-        c.JSON(500, mod.SystemError{"Error Deleting USer"})
+        c.JSON(500, mod.Message{"Error Deleting USer"})
     }
 }
