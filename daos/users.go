@@ -6,19 +6,26 @@ import (
     mod "../models"
 )
 
-func GetUsers() (*[]mod.User, error) {
+func GetUsers() (*mod.Users, error) {
+    var count float64
     session := GetSession()
-    dbUsers := []mod.User{}
+    users := []mod.User{}
+    usersMod := new (mod.Users)
 
-    response, err := db.Table("users").OrderBy(db.Asc("id")).Run(session)
+    response, err := db.Table("users").Run(session)
 
     if err != nil {
         fmt.Println("e:", err)
     }
+    err = response.All(&users)
 
-    err = response.All(&dbUsers)
+    resp, err := db.Table("users").Count().Run(session)
+    resp.Next(&count)
 
-    return &dbUsers, err
+    usersMod.Users = users
+    usersMod.Total = count
+
+    return usersMod, err
 }
 
 func GetUser(userId string) (mod.User, error) {

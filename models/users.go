@@ -9,5 +9,5 @@ type User struct {
 
 type Users struct {
     Users []User `json:"users" required`
-    Total int `json:"total"`
+    Total float64 `json:"total"`
 }
