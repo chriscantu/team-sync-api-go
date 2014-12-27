@@ -18,7 +18,7 @@ I am very new to Go and would not recommend my logic as an example of how to do 
 * Create Table 'questions'
 
 ## Initial Run
-* `git clone git@github.com:chriscantu/gin-example.git`
+* `git clone git@github.com:chriscantu/team-sync.git`
 * `go get github.com/gin-gonic/gin`
 * `go get github.com/dancannon/gorethink`
 * `cd gin-example`
