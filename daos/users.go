@@ -1,7 +1,7 @@
 package daos
 
 import (
-    "fmt"
+    "log"
     db "github.com/dancannon/gorethink"
     mod "../models"
 )
@@ -15,7 +15,7 @@ func GetUsers() (*mod.Users, error) {
     response, err := db.Table("users").Run(session)
 
     if err != nil {
-        fmt.Println("e:", err)
+        log.Panic(err)
     }
     err = response.All(&users)
 
@@ -34,7 +34,7 @@ func GetUser(userId string) (mod.User, error) {
     response, err := db.Table("users").Get(userId).Run(session)
 
     if err != nil {
-        fmt.Println("e:", err)
+        log.Panic(err)
     }
 
     response.Next(&user)
@@ -48,7 +48,7 @@ func CreateUser(user mod.User) (mod.User, error) {
     response, err := db.Table("users").Insert(user).RunWrite(session)
 
     if err != nil {
-        fmt.Println("e:", err)
+        log.Panic(err)
     }
 
     user.Id = response.GeneratedKeys[0]
