@@ -10,7 +10,7 @@ func GetQuestions (c *gin.Context) {
     questions, err := dao.GetQuestions()
 
     if err != nil {
-        c.JSON(500, mod.Message{"System Error"})
+        c.JSON(500, mod.Message{"System Error retrieving Questions"})
     } else {
         c.JSON(200, questions)
     }
@@ -21,9 +21,9 @@ func GetQuestion (c *gin.Context) {
     question, err := dao.GetQuestion(questionId)
 
     if err != nil {
-        c.JSON(500, mod.Message{"Unable to retrieve Question"})
+        c.JSON(500, mod.Message{"Error retrieving Question"})
     } else if question.Id == "" {
-        c.JSON(404, mod.Message{"Unable to find Question by Id: " + questionId})
+        c.JSON(404, mod.Get404("Question", questionId))
     } else {
         c.JSON(200, question)
     }
@@ -63,8 +63,8 @@ func DeleteQuestion (c *gin.Context) {
     err := dao.DeleteQuestion(questionId)
 
     if err == nil {
-        c.JSON(200, mod.Message{"Deleted Question"})
+        c.JSON(200, mod.GetDelMsg("Question", questionId))
     } else {
-        c.JSON(500, mod.Message{"Error Deleting USer"})
+        c.JSON(500, mod.Message{"Error Deleting Question"})
     }
 }

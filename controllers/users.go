@@ -10,7 +10,7 @@ func GetUsers (c *gin.Context) {
     users, err := dao.GetUsers()
 
     if err != nil {
-        c.JSON(500, mod.Message{"System Error"})
+        c.JSON(500, mod.Message{"System Error retrieving Users"})
     } else {
         c.JSON(200, users)
     }
@@ -21,9 +21,9 @@ func GetUser (c *gin.Context) {
     user, err := dao.GetUser(userId)
 
     if err != nil {
-        c.JSON(500, mod.Message{"Unable to retrieve User"})
+        c.JSON(500, mod.Message{"Error retrieving User"})
     } else if user.Id == "" {
-        c.JSON(404, mod.Message{"Unable to find User by Id: " + userId})
+        c.JSON(404, mod.Get404("User", userId))
     } else {
         c.JSON(200, user)
     }
