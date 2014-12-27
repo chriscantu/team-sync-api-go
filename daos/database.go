@@ -11,7 +11,7 @@ func InitDb() {
     session, err := db.Connect(db.ConnectOpts{
         Address: "localhost:28015",
         Database: "teamsync",
-        })
+    })
 
     if err != nil {
         log.Fatal(err)
