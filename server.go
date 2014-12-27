@@ -18,7 +18,7 @@ func main() {
     r.PUT("/users/:userId", ctrl.UpdateUser)
     r.DELETE("/users/:userId", ctrl.DeleteUser)
     r.GET("/questions", ctrl.GetQuestions)
-    r.GET("/questions/:userId", ctrl.GetQuestions)
+    r.GET("/questions/:questionId", ctrl.GetQuestion)
     r.POST("/questions", ctrl.CreateQuestion)
     r.PUT("/questions/:questionId", ctrl.UpdateQuestion)
     r.DELETE("/questions/:questionId", ctrl.DeleteQuestion)
