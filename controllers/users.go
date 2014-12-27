@@ -22,6 +22,8 @@ func GetUser (c *gin.Context) {
 
     if err != nil {
         c.JSON(500, mod.Message{"Unable to retrieve User"})
+    } else if user.Id == "" {
+        c.JSON(404, mod.Message{"Unable to find User by Id: " + userId})
     } else {
         c.JSON(200, user)
     }
