@@ -4,19 +4,24 @@ import (
     mod "../models"
     )
 
-func GetQuestions() ([]mod.Question, error) {
+func GetQuestions() (*mod.Questions, error) {
     questions := []mod.Question{}
+    quesMod := new(mod.Questions)
 
     response, err := GetList("questions")
     err = response.All(&questions)
 
-    return questions, err
+    count, err :=GetCount("questions")
+    quesMod.Questions = questions
+    quesMod.Total = count
+
+    return quesMod, err
 }
 
 func GetQuestion(questionId string) (mod.Question, error) {
     question := mod.Question{}
 
-    response, err := GetRec("users", questionId)
+    response, err := GetRec("questions", questionId)
     response.Next(&question)
 
     return question, err
