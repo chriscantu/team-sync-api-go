@@ -7,20 +7,13 @@ import (
 )
 
 func GetUsers() (*mod.Users, error) {
-    var count float64
-    session := GetSession()
     users := []mod.User{}
     usersMod := new (mod.Users)
 
-    response, err := db.Table("users").Run(session)
+    response, err := GetList("users")
 
-    if err != nil {
-        log.Panic(err)
-    }
     err = response.All(&users)
-
-    resp, err := db.Table("users").Count().Run(session)
-    resp.Next(&count)
+    count, err := GetCount("users")
 
     usersMod.Users = users
     usersMod.Total = count
@@ -29,14 +22,9 @@ func GetUsers() (*mod.Users, error) {
 }
 
 func GetUser(userId string) (mod.User, error) {
-    session := GetSession()
     user := mod.User{}
-    response, err := db.Table("users").Get(userId).Run(session)
 
-    if err != nil {
-        log.Panic(err)
-    }
-
+    response, err := GetRec("users", userId)
     response.Next(&user)
 
     return user, err
@@ -65,8 +53,5 @@ func UpdateUser(user mod.User) (mod.User, error) {
 }
 
 func DeleteUser(userId string) (error) {
-    session := GetSession()
-    _, err := db.Table("users").Get(userId).Delete().RunWrite(session)
-
-    return err
+    return DeleteRec("users", userId)
 }

@@ -7,30 +7,20 @@ import (
     )
 
 func GetQuestions() ([]mod.Question, error) {
-    session := GetSession()
     questions := []mod.Question{}
 
-    response, err := db.Table("questions").Run(session)
-
-    if err != nil {
-        log.Panic(err)
-    }
-
+    response, err := GetList("questions")
     err = response.All(&questions)
 
     return questions, err
 }
 
 func GetQuestion(questionId string) (mod.Question, error) {
-    session := GetSession()
     question := mod.Question{}
-    response, err := db.Table("questions").Get(questionId).Run(session)
 
-    if err != nil {
-        log.Panic(err)
-    }
-
+    response, err := GetRec("users", questionId)
     response.Next(&question)
+    log.Println(question)
 
     return question, err
 }
@@ -58,8 +48,5 @@ func UpdateQuestion(question mod.Question) (mod.Question, error) {
 }
 
 func DeleteQuestion(questionId string) (error) {
-    session := GetSession()
-    _, err := db.Table("questions").Get(questionId).Delete().RunWrite(session)
-
-    return err
+    return DeleteRec("questions", questionId)
 }
