@@ -59,6 +59,26 @@ func GetCount(table string) (float64, error) {
     return count, err
 }
 
+func CreateRec(table string, model interface{}) (db.WriteResponse, error) {
+    response, err := db.Table(table).Insert(model).RunWrite(session)
+
+    if err != nil {
+        log.Panic(err)
+    }
+
+    return response, err
+}
+
+func UpdateRec(table string, id string, model interface{}) (error) {
+    _, err := db.Table(table).Get(id).Update(model).RunWrite(session)
+
+    if err != nil {
+        log.Panic(err)
+    }
+
+    return err
+}
+
 func DeleteRec(table string, id string) (error) {
     _, err := db.Table(table).Get(id).Delete().RunWrite(session)
 
