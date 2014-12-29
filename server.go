@@ -24,5 +24,12 @@ func main() {
     r.PUT("/questions/:questionId", ctrl.UpdateQuestion)
     r.DELETE("/questions/:questionId", ctrl.DeleteQuestion)
 
+    r.GET("/reports", ctrl.GetReports)
+    r.GET("/reports/:reportId", ctrl.GetReport)
+    r.POST("/reports", ctrl.CreateReport)
+    r.PUT("/reports/:reportId", ctrl.UpdateReport)
+    r.DELETE("/reports/:reportId", ctrl.DeleteReport)
+
+
     r.Run(":9000")
 }
