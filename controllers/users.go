@@ -65,6 +65,6 @@ func DeleteUser (c *gin.Context) {
     if err == nil {
         c.JSON(200, mod.Message{"Deleted User"})
     } else {
-        c.JSON(500, mod.Message{"Error Deleting USer"})
+        c.JSON(500, mod.Message{"Error Deleting User"})
     }
 }
