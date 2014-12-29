@@ -30,6 +30,5 @@ func main() {
     r.PUT("/reports/:reportId", ctrl.UpdateReport)
     r.DELETE("/reports/:reportId", ctrl.DeleteReport)
 
-
     r.Run(":9000")
 }

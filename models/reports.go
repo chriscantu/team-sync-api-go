@@ -6,7 +6,7 @@ import (
 
 type QA struct {
     Question string `json:"question" required`
-    Answer string `json:"answer" required`
+    Answers []string `json:"answers" required`
 }
 
 type Report struct {

@@ -4,6 +4,7 @@ import (
     "log"
     db "github.com/dancannon/gorethink"
     mod "../models"
+    "time"
     )
 
 func GetReports() (*mod.Reports, error) {
@@ -33,6 +34,7 @@ func GetReport(reportId string) (mod.Report, error) {
 func CreateReport(report mod.Report) (mod.Report, error) {
     session := GetSession()
 
+    report.Date = time.Now()
     response, err := db.Table("reports").Insert(report).RunWrite(session)
 
     if err != nil {
