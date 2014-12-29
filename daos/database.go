@@ -48,7 +48,7 @@ func GetList(table string) (*db.Cursor, error) {
 
 func GetCount(table string) (float64, error) {
     var count float64
-    response, err := db.Table("users").Count().Run(session)
+    response, err := db.Table(table).Count().Run(session)
 
     if err != nil {
         log.Panic(err)
