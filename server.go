@@ -30,5 +30,11 @@ func main() {
     r.PUT("/reports/:reportId", ctrl.UpdateReport)
     r.DELETE("/reports/:reportId", ctrl.DeleteReport)
 
+    r.GET("/teams", ctrl.GetTeams)
+    r.GET("/teams/:reportId", ctrl.GetTeam)
+    r.POST("/teams", ctrl.CreateTeam)
+    r.PUT("/teams/:reportId", ctrl.UpdateTeam)
+    r.DELETE("/teams/:reportId", ctrl.DeleteTeam)
+
     r.Run(":9000")
 }
