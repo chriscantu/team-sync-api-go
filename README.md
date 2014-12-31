@@ -14,7 +14,7 @@ I am very new to Go and would not recommend my logic as an example of how to do 
 ## RethinkDB Setup
 * Install RethinkDB locally
 * Create db 'teamsync'
-* Create Tables 'users', 'questions', 'reports'
+* Create Tables 'users', 'questions', 'reports', 'teams'
 
 ## Initial Run
 * `git clone git@github.com:chriscantu/team-sync.git`
