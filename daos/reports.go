@@ -22,13 +22,13 @@ func GetReports() (*mod.Reports, error) {
     return reportsMod, err
 }
 
-func GetReport(reportId string) (mod.Report, error) {
+func GetReport(reportId string) (mod.Report) {
     report := mod.Report{}
 
-    response, err := GetRec("reports", reportId)
+    response := GetRec("reports", reportId)
     response.Next(&report)
 
-    return report, err
+    return report
 }
 
 func CreateReport(report mod.Report) (mod.Report, error) {

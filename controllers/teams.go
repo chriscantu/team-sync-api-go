@@ -18,11 +18,9 @@ func GetTeams (c *gin.Context) {
 
 func GetTeam (c *gin.Context) {
     teamId := c.Params.ByName("teamId")
-    team, err := dao.GetTeam(teamId)
+    team := dao.GetTeam(teamId)
 
-    if err != nil {
-        c.JSON(500, mod.Message{"Error retrieving Team"})
-    } else if team.Id == "" {
+    if team.Id == "" {
         c.JSON(404, mod.Get404("Team", teamId))
     } else {
         c.JSON(200, team)

@@ -7,22 +7,16 @@ import (
 )
 
 func GetUsers (c *gin.Context) {
-    users, err := dao.GetUsers()
+    users, _ := dao.GetUsers()
 
-    if err != nil {
-        c.JSON(500, mod.Message{"System Error retrieving Users"})
-    } else {
-        c.JSON(200, users)
-    }
+    c.JSON(200, users)
 }
 
 func GetUser (c *gin.Context) {
     userId := c.Params.ByName("userId")
-    user, err := dao.GetUser(userId)
+    user := dao.GetUser(userId)
 
-    if err != nil {
-        c.JSON(500, mod.Message{"Error retrieving User"})
-    } else if user.Id == "" {
+    if user.Id == "" {
         c.JSON(404, mod.Get404("User", userId))
     } else {
         c.JSON(200, user)

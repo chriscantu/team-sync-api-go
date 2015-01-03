@@ -18,11 +18,9 @@ func GetQuestions (c *gin.Context) {
 
 func GetQuestion (c *gin.Context) {
     questionId := c.Params.ByName("questionId")
-    question, err := dao.GetQuestion(questionId)
+    question := dao.GetQuestion(questionId)
 
-    if err != nil {
-        c.JSON(500, mod.Message{"Error retrieving Question"})
-    } else if question.Id == "" {
+    if question.Id == "" {
         c.JSON(404, mod.Get404("Question", questionId))
     } else {
         c.JSON(200, question)

@@ -21,13 +21,13 @@ func GetTeams() (*mod.Teams, error) {
     return teamsMod, err
 }
 
-func GetTeam(teamId string) (mod.Team, error) {
+func GetTeam(teamId string) (mod.Team) {
     team := mod.Team{}
 
-    response, err := GetRec("teams", teamId)
+    response := GetRec("teams", teamId)
     response.Next(&team)
 
-    return team, err
+    return team
 }
 
 func CreateTeam(team mod.Team) (mod.Team, error) {

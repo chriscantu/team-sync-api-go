@@ -18,11 +18,9 @@ func GetReports (c *gin.Context) {
 
 func GetReport (c *gin.Context) {
     reportId := c.Params.ByName("reportId")
-    report, err := dao.GetReport(reportId)
+    report := dao.GetReport(reportId)
 
-    if err != nil {
-        c.JSON(500, mod.Message{"Error retrieving Report"})
-    } else if report.Id == "" {
+    if report.Id == "" {
         c.JSON(404, mod.Get404("Report", reportId))
     } else {
         c.JSON(200, report)

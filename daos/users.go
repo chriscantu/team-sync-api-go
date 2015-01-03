@@ -21,13 +21,13 @@ func GetUsers() (*mod.Users, error) {
     return usersMod, err
 }
 
-func GetUser(userId string) (mod.User, error) {
+func GetUser(userId string) (mod.User) {
     user := mod.User{}
 
-    response, err := GetRec("users", userId)
+    response := GetRec("users", userId)
     response.Next(&user)
 
-    return user, err
+    return user
 }
 
 func CreateUser(user mod.User) (mod.User, error) {

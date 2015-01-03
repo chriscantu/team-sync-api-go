@@ -24,7 +24,7 @@ func GetSession() *db.Session {
     return session
 }
 
-func GetRec(table string, id string) (*db.Cursor, error) {
+func GetRec(table string, id string) (*db.Cursor) {
 
     response, err := db.Table(table).Get(id).Run(session)
 
@@ -32,13 +32,14 @@ func GetRec(table string, id string) (*db.Cursor, error) {
         log.Panic(err)
     }
 
-    return response, err
+    return response
 }
 
 func GetList(table string) (*db.Cursor, error) {
     response, err := db.Table(table).Run(session)
 
     if err != nil {
+        panic(err)
         log.Panic(err)
     }
 

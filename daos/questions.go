@@ -18,13 +18,13 @@ func GetQuestions() (*mod.Questions, error) {
     return quesMod, err
 }
 
-func GetQuestion(questionId string) (mod.Question, error) {
+func GetQuestion(questionId string) (mod.Question) {
     question := mod.Question{}
 
-    response, err := GetRec("questions", questionId)
+    response := GetRec("questions", questionId)
     response.Next(&question)
 
-    return question, err
+    return question
 }
 
 func CreateQuestion(question mod.Question) (mod.Question, error) {
