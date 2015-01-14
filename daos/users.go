@@ -6,21 +6,6 @@ import (
     mod "../models"
 )
 
-func GetUsers() (*mod.Users, error) {
-    users := []mod.User{}
-    usersMod := new (mod.Users)
-
-    response, err := GetList("users")
-
-    err = response.All(&users)
-    count, err := GetCount("users")
-
-    usersMod.Users = users
-    usersMod.Total = count
-
-    return usersMod, err
-}
-
 func GetUser(userId string) (mod.User) {
     user := mod.User{}
 
