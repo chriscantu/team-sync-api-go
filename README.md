@@ -8,6 +8,7 @@ I am very new to Go and would not recommend my logic as an example of how to do 
 
 ## Dependencies
 * Rethink DB installed locally
+* Mercurial installed locally
 * github.com/gin-gonic/gin
 * github.com/dancannon/gorethink
 
