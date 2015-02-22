@@ -7,10 +7,9 @@ import (
 )
 
 func GetUsers (c *gin.Context) {
-    users := []mod.User{}
-    response := dao.GetCollection(&users, "users")
+    users, _ := dao.GetUsers()
 
-    c.JSON(200, response)
+    c.JSON(200, users)
 }
 
 func GetUser (c *gin.Context) {

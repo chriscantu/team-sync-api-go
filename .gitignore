@@ -1,4 +1,3 @@
 gin-bin
 tmp
 rethinkdb_data
-*.swp
